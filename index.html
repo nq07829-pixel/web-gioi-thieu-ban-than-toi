@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - Nguyễn Huỳnh Ái Quyên</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        .bg-custom-gradient { background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); min-height: 100vh; }
+        .text-gradient { background: linear-gradient(45deg, #ff416c, #ff4b2b, #8a2387, #e94057, #f27121); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textFlow 4s linear infinite; }
+        @keyframes textFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .hover-card { transition: transform 0.3s ease; }
+        .hover-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="bg-custom-gradient">
+
+    <!-- MENU ĐỒNG BỘ -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 text-gradient" href="index.html">✨ ÁI QUYÊN ✨</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fw-semibold">
+                    <li class="nav-item"><a class="nav-link active text-info" href="index.html">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="trainghiem.html">Trải nghiệm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chiase.html">Chia sẻ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="thanhtich.html">Thành tích</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lienhe.html">Liên hệ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="baitho.html">Bài thơ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="music.html">List nhạc</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- NỘI DUNG GIỚI THIỆU -->
+    <div class="container my-5">
+        <div class="row align-items-center bg-white p-5 rounded-4 shadow mb-4 border border-info border-opacity-25 hover-card">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="https://dicebear.com" class="rounded-circle img-thumbnail shadow-lg bg-warning border-4 border-info" alt="Avatar" style="width: 180px; height: 180px;">
+            </div>
+            <div class="col-md-8">
+                <h1 class="fw-bold display-5 text-gradient">Xin chào, mình là Ái Quyên!</h1><p class="lead text-secondary mt-3">Chào mừng bạn đến với trang web cá nhân xinh xắn của mình. Đây là nơi mình chia sẻ thông tin lý lịch, hành trình học tập cùng sở thích thơ ca và âm nhạc đặc biệt.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="bg-white p-4 rounded-4 shadow h-100 border-top border-4 border-danger hover-card">
+                    <h4 class="text-danger fw-bold border-bottom pb-2 mb-3">📌 Thông Tin Sơ Lược</h4>
+                    <ul class="list-unstyled lh-lg fs-6 text-dark">
+                        <li><strong>Họ và tên:</strong> Nguyễn Huỳnh Ái Quyên</li>
+                        <li><strong>Lớp học:</strong> DA25TTC</li>
+                        <li><strong>Công việc:</strong> Sinh viên CNTT</li>
+                        <li><strong>Chuyên ngành:</strong> Thiết kế & Phát triển Web</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="bg-white p-4 rounded-4 shadow h-100 border-top border-4 border-primary hover-card">
+                    <h4 class="text-primary fw-bold border-bottom pb-2 mb-3">💫 Đôi Điều Về Mình</h4>
+                    <p class="text-secondary lh-base">Là một thành viên tích cực của tập thể lớp <strong>DA25TTC</strong>, mình đam mê công nghệ và luôn hứng thú với việc xây dựng giao diện người dùng đẹp mắt, tối ưu. Bên cạnh đó, mình coi thơ ca và âm nhạc là nguồn cảm hứng lớn giúp cân bằng cuộc sống sau những giờ lập trình căng thẳng.</p>
+                    <div class="mt-4">
+                        <a href="baitho.html" class="btn btn-danger px-4 py-2 me-2 shadow-sm fw-bold rounded-pill">Góc Thơ Ca</a>
+                        <a href="music.html" class="btn btn-success px-4 py-2 shadow-sm fw-bold rounded-pill">Góc Âm Nhạc</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>

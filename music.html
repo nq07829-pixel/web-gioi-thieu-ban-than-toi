@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎵 Website Nghe Nhạc</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+}
+
+header{
+    padding:25px;
+    font-size:35px;
+    font-weight:bold;
+    background:rgba(0,0,0,0.3);
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding:30px;
+}
+
+select,button{
+    padding:12px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    background:#00c896;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#00a67d;
+}
+
+video{
+    width:100%;
+    max-width:900px;
+    margin-top:20px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+h2{
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🎵 WEBSITE NGHE NHẠC 🎵
+</header>
+
+<div class="container">
+
+<h2>Chọn Thể Loại</h2>
+
+<select id="theloai" onchange="doiTheLoai()">
+    <option value="bolero">Bolero</option>
+    <option value="nhactre">Nhạc Trẻ</option>
+</select>
+
+<select id="baihat"></select>
+
+<button onclick="phatVideo()">▶ Phát Nhạc</button>
+
+<div id="khungphat"></div>
+
+</div>
+
+<script>
+
+const danhSach = {
+
+    bolero: [
+
+        {
+            ten:"Sầu Tím Thiệp Hồng",
+            url:"saultimthiephong.mp4"
+        },
+
+        {
+            ten:"Đắp Mộ Cuộc Tình",
+            url:"dapmocuoctinh.mp4"
+        },
+
+        {
+            ten:"Nhật Ký Đời Tôi",
+            url:"nhatkydoitoi.mp4"
+        },
+
+        {
+            ten:"Chuyến Tàu Hoàng Hôn",
+            url:"chuyentauhoanghon.mp4"
+        },
+
+        {
+            ten:"Vùng Lá Me Bay",
+            url:"vunglamebay.mp4"
+        }
+
+    ],
+
+    nhactre: [
+
+        {
+            ten:"Nơi Này Có Anh",
+            url:"noinaycoanh.mp4"
+        },
+
+        {
+            ten:"Âm Thầm Bên Em",
+            url:"amthambenem.mp4"
+        },
+
+        {
+            ten:"Lạc Trôi",
+            url:"lactroi.mp4"
+        },
+
+        {
+            ten:"Hãy Trao Cho Anh",
+            url:"haytraochoanh.mp4"
+        },
+
+        {
+            ten:"Chúng Ta Của Hiện Tại",
+            url:"chungtacuahientai.mp4"
+        }
+
+    ]
+};
+
+function doiTheLoai(){
+
+    const tl = document.getElementById("theloai").value;
+    const baihat = document.getElementById("baihat");
+
+    baihat.innerHTML = "";
+
+    danhSach[tl].forEach(function(item){
+
+        baihat.innerHTML += `
+            <option value="${item.url}">
+                ${item.ten}
+            </option>
+        `;
+    });
+}
+
+function phatVideo(){
+
+    const videoUrl =
+    document.getElementById("baihat").value;
+
+    document.getElementById("khungphat").innerHTML = `
+        <video controls autoplay><source src="${videoUrl}" type="video/mp4">
+            Trình duyệt không hỗ trợ video.
+        </video>
+    `;
+}
+
+doiTheLoai();
+
+</script>
+
+</body>
+</html>
