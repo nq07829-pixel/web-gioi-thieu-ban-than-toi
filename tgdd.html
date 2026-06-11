@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao diện Thế Giới Di Động Nhà Làm</title>
+    <style>
+        /* ==================== 1. CÀI ĐẶT CHUNG (RESET CSS) ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        /* ==================== 2. THANH THÔNG BÁO MÀU ĐỎ TRÊN CÙNG ==================== */
+        .top-bar {
+            background-color: #d0021c;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* ==================== 3. THANH HEADER MÀU VÀNG ==================== */
+        header {
+            background-color: #fed100;
+            padding: 10px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .logo {
+            background-color: #333;
+            color: #fed100;
+            padding: 8px 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .search-box {
+            flex: 1;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .hotline {
+            font-weight: bold;
+        }
+
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* ==================== 4. KHU VỰC THÂN TRANG (SIDEBAR + MAIN CONTENT) ==================== */
+        .main-layout {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            gap: 20px;
+            padding: 0 15px;
+        }
+
+        /* --- BÊN TRÁI: THANH ĐIỀU HƯỚNG (SIDEBAR) --- */
+        aside {
+            width: 250px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            align-self: flex-start;
+        }
+
+        aside h3 {
+            font-size: 14px;
+            color: #e28743;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-list li a {
+            display: block;
+            padding: 10px 12px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .menu-list li.active a {
+            background-color: #111;
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-list li a:hover:not(.active) {
+            background-color: #f1f1f1;
+        }
+
+        /* --- BÊN PHẢI: KHU VỰC CHÍNH (MAIN CONTENT) --- */
+        .content-area {
+            flex: 1;
+        }
+
+        /* Khu vực Banners Quảng cáo */
+        .banners-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .banner {
+            flex: 1;
+            border-radius: 8px;
+            padding: 20px;
+            color: white;
+            min-height: 120px;
+        }
+
+        .banner-orange {
+            background: linear-gradient(135deg, #f2994a, #f2c94c);
+        }
+
+        .banner-blue {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+        }
+
+        /* Tiêu đề mục sản phẩm */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Lưới hiển thị danh sách sản phẩm (3 cột) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        /* Ô sản phẩm (Card) */
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Nhãn giảm giá màu đỏ */
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #d0021c;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .product-image {
+            text-align: center;
+            margin: 20px 0 10px 0;
+            font-size: 50px; /* Dùng tạm emoji thay hình ảnh để code gọn nhẹ */
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .product-specs {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .price-box {
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            color: #d0021c;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 13px;
+        }
+
+        .btn-buy {
+            background-color: #fed100;
+            color: #333;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .btn-buy:hover {
+            background-color: #e5bd00;
+        }
+
+        /* ==================== 5. CHÂN TRANG (FOOTER) ==================== */
+        footer {
+            background-color: #fff;
+            border-top: 1px solid #e0e0e0;
+            padding: 30px 0;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .footer-col p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        cam kết bộ ba bảo vệ: Khách hàng là số 1 - Giao siêu tốc - Lỗi đổi mới 1 tháng!
+    </div>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">thegioididong</a>
+            <div class="search-box">
+                <input type="text" placeholder="Bạn tìm gì hôm nay... (iPhone 15, Laptop Gaming?)">
+            </div>
+            <div class="header-right">
+                <span class="hotline">📞 Gọi mua: 1800.1060</span>
+                <span class="cart">🛒 Giỏ hàng (0)</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        
+        <aside>
+            <h3>☰ Điều hướng chính</h3>
+            <ul class="menu-list">
+                <li><a href="#">🏠 Về Trang Chủ Index</a></li>
+                <li class="active"><a href="#">📱 Tất cả sản phẩm</a></li>
+                <li><a href="#">🔹 Điện thoại di động</a></li>
+                <li><a href="#">🔹 Máy tính Laptop</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            
+            <div class="banners-container">
+                <div class="banner banner-orange">
+                    <strong>ĐỘC QUYỀN HÈ 2026</strong>
+                    <h2>SĂN SMARTPHONE - GIẢM ĐẾN 36%</h2>
+                    <p>Áp dụng kèm ưu đãi giảm thêm cho Học sinh - Sinh viên.</p>
+                </div>
+                <div class="banner banner-blue">
+                    <strong>⚡ LAPTOP CHÍNH HÃNG CHẤT LỚN</strong>
+                    <p>Xả kho giá gốc - Bảo hành cực uy tín cực thuyết phục.</p>
+                    <h3>GIẢM ĐẾN 5 TRIỆU</h3>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>| SẢN PHẨM NỔI BẬT KHUYẾN MÃI</h2>
+                <small style="color: #666;">Tìm thấy 6 sản phẩm</small>
+            </div>
+
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <span class="discount-badge">Giảm 15%</span>
+                    <div class="product-image">📱</div>
+                    <div class="product-title">iPhone 15 Pro Max 256GB</div>
+                    <div class="product-specs">Chip A17 Pro, RAM 8GB, Siêu nhẹ Titan</div>
+                    <div class="price-box">
+                        <span class="current-price">29.990.000đ</span>
+                        <span class="old-price">34.990.000đ</span>
+                    </div>
+                    <button class="btn-buy">Mua ngay</button>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">Giảm 15%</span>
+                    <div class="product-image">📱</div>
+                    <div class="product-title">Samsung Galaxy S24 Ultra</div>
+                    <div class="product-specs">Snapdragon 8 Gen 3, Camera AI 200MP</div>
+                    <div class="price-box">
+                        <span class="current-price">27.490.000đ</span>
+                        <span class="old-price">31.990.000đ</span>
+                    </div>
+                    <button class="btn-buy">Mua ngay</button>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">Giảm 14%</span>
+                    <div class="product-image">📱</div>
+                    <div class="product-title">Oppo Reno11 F 5G Chính Hãng</div>
+                    <div class="product-specs">RAM 8GB, Sạc nhanh SuperVOOC 67W</div>
+                    <div class="price-box">
+                        <span class="current-price">8.490.000đ</span>
+                        <span class="old-price">9.990.000đ</span>
+                    </div>
+                    <button class="btn-buy">Mua ngay</button>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">Giảm 15%</span>
+                    <div class="product-image">💻</div>
+                    <div class="product-title">MacBook Air M3 13 inch 2024</div>
+                    <div class="product-specs">Apple M3, RAM 8GB, SSD 256GB mỏng nhẹ</div>
+                    <div class="price-box">
+                        <span class="current-price">27.990.000đ</span>
+                        <span class="old-price">32.990.000đ</span>
+                    </div>
+                    <button class="btn-buy">Mua ngay</button>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">Giảm 15%</span>
+                    <div class="product-image">💻</div>
+                    <div class="product-title">Asus Vivobook 14 X1404VA Mới</div>
+                    <div class="product-specs">Core i3 Gen 13, RAM 8GB, SSD 512GB siêu mượt</div>
+                    <div class="price-box">
+                        <span class="current-price">12.290.000đ</span>
+                        <span class="old-price">14.500.000đ</span>
+                    </div>
+                    <button class="btn-buy">Mua ngay</button>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">Giảm 14%</span>
+                    <div class="product-image">💻</div>
+                    <div class="product-title">Lenovo IdeaPad Slim 3 15AMN8</div>
+                    <div class="product-specs">Ryzen 5, SSD 512GB, Màn hình chống chói Full HD</div>
+                    <div class="price-box">
+                        <span class="current-price">14.490.000đ</span>
+                        <span class="old-price">16.900.000đ</span>
+                    </div>
+                    <button class="btn-buy">Mua ngay</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Tổng đài hỗ trợ (Miễn phí)</h4>
+                <p>Gọi mua: <strong>1800.1060</strong> (7:30 - 22:00)</p>
+                <p>Khiếu nại: <strong>1800.1062</strong> (8:00 - 21:30)</p>
+                <p>Bảo hành: <strong>1800.1064</strong> (8:00 - 21:00)</p>
+            </div>
+            <div class="footer-col">
+                <h4>Chính sách chung</h4>
+                <p>Chính sách bảo hành 1 đổi 1</p>
+                <p>Giao hàng hỏa tốc nội thành</p>
+                <p>Hướng dẫn mua trả góp 0%</p>
+            </div>
+            <div class="footer-col">
+                <h4>© 2026 Thế Giới Di Động Nhà Làm</h4>
+                <p>Mô phỏng giao diện tối giản của TGDD</p>
+                <p>🌐 Facebook  |  📺 Youtube</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
